@@ -1,9 +1,10 @@
-__pycache__/
-*.py[cod]
-.venv
-dist
-*.cast
-coverage.xml
-.coverage
 .env
+*.egg-info
+__pycache__
+dist/
+*.pyc
+.venv/
+.coverage
+coverage.xml
+.pytest_cache/
 .DS_Store

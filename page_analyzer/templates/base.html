@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Анализатор страниц</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Анализатор страниц</a>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-3">
+            <li class="nav-item">
+              <a class="nav-link {% if request.endpoint == 'urls_list' %}active{% endif %}" href="{{ url_for('urls_list') }}">Сайты</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="flex-shrink-0">
+      <div class="container mt-5">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+      </div>
+    </main>
+
+    <footer class="footer mt-auto py-3 border-top text-center">
+      <div class="container">
+        <a href="https://hexlet.io" class="text-decoration-none">Hexlet</a>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
