@@ -1,25 +1,28 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block content %}
-<h1 class="mb-4">Сайты</h1>
-
-<table class="table table-bordered align-middle" data-test="urls">
-  <thead class="table-light">
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Имя</th>
-      <th scope="col">Последняя проверка</th>
-      <th scope="col">Код ответа</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for url in urls %}
-      <tr>
-        <td>{{ url.id }}</td>
-        <td><a href="{{ url_for('url_page', id=url.id) }}">{{ url.name }}</a></td>
-        <td>{{ url.created_at.strftime('%Y-%m-%d') }}</td>
-        <td>200</td>
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<div class="contaienr mt-4">
+    <h1 class="mb-4">Сайты</h1>
+    {% if urls %}
+    <table class="table table-striped" data-test="urls">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Имя</th>
+                <th>Последняя проверка</th>
+                <th>Код ответа</th>
+            </tr>
+        </thead>
+        {% for url in urls %}
+        <tbody>
+            <tr>
+                <td>{{ url[0] }}</td>
+                <td><a href="{{ url_for('redirect_to_url_details', id=url[0]) }}">{{ url[1] }}</a></td>
+                <td>{{ url[2] }}</td>
+                <td>{{ url[3] }}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
 {% endblock %}

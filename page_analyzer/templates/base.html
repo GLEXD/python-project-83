@@ -1,48 +1,37 @@
-<!doctype html>
-<html lang="ru">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Анализатор страниц</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  </head>
-  <body>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Анализатор страниц</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <header class="flex-shrink-0">
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark px-3">
+          <a class="navbar-brand" href="/">Анализатор страниц</a>
+          <div id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link " href="/urls">Сайты</a></li>
+              </ul>
+          </div>
+        </nav>
+        </header>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="{{ url_for('index') }}">Анализатор страниц</a>
-        <div class="collapse navbar-collapse">
-          <ul class="navbar-nav ms-3">
-            <li class="nav-item">
-              <a class="nav-link {% if request.endpoint == 'urls_list' %}active{% endif %}" href="{{ url_for('urls_list') }}">Сайты</a>
-            </li>
-          </ul>
+        <div class="container mt-3">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="alert alert-warning" role="alert">{{ messages[0] }}</div>
+                {% endif %}
+            {% endwith %}
         </div>
-      </div>
-    </nav>
-
-    <main class="flex-shrink-0">
-      <div class="container mt-5">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            {% for category, message in messages %}
-              <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
+        <main class="flex-grow-1">
         {% block content %}{% endblock %}
-      </div>
-    </main>
-
-    <footer class="footer mt-auto py-3 border-top text-center">
-      <div class="container">
-        <a href="https://hexlet.io" class="text-decoration-none">Hexlet</a>
-      </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+        </main>
+        <footer class="border-top py-3 mt-5 flex-shrink-0">
+            <div class="container-lg">
+              <div class="text-center">
+                <a href="https://ru.hexlet.io/" target="_blank">Hexlet</a>
+              </div>
+            </div>
+          </footer>
+    </body>
 </html>

@@ -1,18 +1,12 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block content %}
-<div class="card shadow-sm border-0 bg-light p-5 mx-auto" style="max-width: 700px;">
-  <div class="card-body text-center">
-    <h1 class="display-5 mb-3">Анализатор страниц</h1>
-    <p class="lead text-muted mb-4">Бесплатно проверяйте сайты на SEO-пригодность</p>
-
-    <form method="post" action="{{ url_for('add_url') }}" class="row g-3 justify-content-center">
-      <div class="col-md-8">
-        <input type="text" name="url" class="form-control form-control-lg" placeholder="https://www.example.com" required maxlength="255">
-      </div>
-      <div class="col-md-auto">
-        <button type="submit" class="btn btn-primary btn-lg px-4">ПРОВЕРИТЬ</button>
-      </div>
-    </form>
+<div class="col-12 col-md-10 col-lg-8 mx-auto border rounded-3 bg-light p-5">
+    <h1 class="display-3">Анализатор страниц</h1>
+    <p class="lead">Бесплатно проверяйте сайты на SEO-пригодность</p>
+    <form action="/urls" method="post" class="d-flex justify-content-center">
+    <label for="text" class="visually-hidden">Url для проверки</label>
+    <input type="text" name="url" placeholder="https://www.example.com" value="" class="form-control form-control-lg" required="">
+    <input type="submit" class="btn btn-primary  btn-lg ms-3 px-5 text-uppercase mx-3" value="Проверить">
+</form>
   </div>
-</div>
 {% endblock %}
