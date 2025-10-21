@@ -25,8 +25,8 @@ def extract_page_info(site):
 
     meta_description = soup.find('meta', attrs={'name': 'description'})
 
-    return {'title': soup.title.text.strip() if soup.title else '',
-            'h1': soup.find('h1').text.strip() if soup.find('h1') else '',
-            'description': meta_description['content'] if meta_description
-            else ''
-            }
+    return {
+        'title': soup.title.text.strip() if soup.title else '',
+        'h1': soup.find('h1').text.strip() if soup.find('h1') else '',
+        'description': meta_description['content'] if meta_description else ''
+    }
