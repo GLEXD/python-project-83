@@ -7,10 +7,10 @@ from page_analyzer.database import (
     fetch_url_checks_by_id, fetch_url_name_by_id
 )
 from page_analyzer.utils import SECRET_KEY
-from page_analyzer.site_request_data import (
+from page_analyzer.parser import (
     extract_page_info, fetch_site_response
 )
-from urllib.parse import urlparse
+from page_analyzer.url_normalizer import normalize_url
 import validators
 
 
@@ -37,8 +37,7 @@ def handle_add_url():
         flash("Некорректный URL")
         return render_template('index.html'), 422
 
-    parsed_url = urlparse(url)
-    normalized_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
+    normalized_url = normalize_url(url)
     is_url_exists = fetch_id_by_name(normalized_url)
 
     if is_url_exists:
